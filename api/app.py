@@ -19,7 +19,7 @@ app.config['SWAGGER'] = {
     },
     "version": "1.0.0"
   },
-    "specs_route": "/docs"
+    "specs_route": "/api/docs"
 }
 swagger = Swagger(app)
 
