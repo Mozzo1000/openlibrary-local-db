@@ -66,7 +66,7 @@ function App() {
       <div className="container mx-auto pt-10 w-6/12">
           <h1 className="text-lg font-bold pb-2">Demo for faster OpenLibrary search</h1>
           <div className="flex flex-row gap-4 pb-2">
-            <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="Github">Github</a>
+            <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://github.com/Mozzo1000/openlibrary-local-db">Github</a>
             <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="API">API</a>
           </div>
           <TextInput icon={RiSearch2Line} id="search" type="text" placeholder="Search by book title or isbn" onChange={(e) => (debouncedChangeHandler(e), setSearchTerm(e.target.value))} value={searchTerm} />
