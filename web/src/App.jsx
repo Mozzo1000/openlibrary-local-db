@@ -16,7 +16,7 @@ function App() {
 
     const fetchSuggestions = (searchTerm) => {
       if (searchTerm) {
-          axios.get(`http://localhost:5000/v1/search/${encodeURIComponent(searchTerm)}`).then(
+          axios.get(import.meta.env.VITE_API_URL + `v1/search/${encodeURIComponent(searchTerm)}`).then(
             response => {
             let newArray = []
             for (let i = 0; i < response.data.length; i++) {
