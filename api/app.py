@@ -3,15 +3,51 @@ from flask_cors import CORS
 import sqlite3
 from dotenv import load_dotenv
 import os
+from flasgger import Swagger
 
 app = Flask(__name__)
 CORS(app)
+
+app.config['SWAGGER'] = {
+  "openapi": "3.0.0",
+  "info": {
+    "title": "openlibrary-local-db API",
+    "description": "API for accessing a dumped version of OpenLibrary",
+    "contact": {
+      "responsibleDeveloper": "Andreas Backström",
+      "url": "https://github.com/mozzo1000/openlibrary-local-db",
+    },
+    "version": "1.0.0"
+  },
+    "specs_route": "/docs"
+}
+swagger = Swagger(app)
+
+
 load_dotenv()
 con = sqlite3.connect(os.getenv("OL_DB"), check_same_thread=False)
 cur = con.cursor()
 
 @app.route("/v1/search/<query>")
 def search(query):
+    """
+        Search books by title or isbn
+        ---
+        parameters:
+            - name: query
+              in: path
+              type: string
+              required: true
+        responses:
+          200:
+            description: Results found, returning title and isbn.
+
+          404:
+            description: No results found.
+
+
+    """
+
     limit = request.args.get("limit", default=10, type=int)
 
     sql_search ="""
@@ -48,6 +84,8 @@ def search(query):
 @app.route("/")
 def index():
     return {
-        "name": "openlibrary-qnk-search-api",
-        "version": "1.0.0"
+        "name": "openlibrary-local-db-api",
+        "version": "1.0.0",
+        "docs": request.base_url + "docs",
+        "oldump_date": os.getenv("OLDUMP_DATE")
     }
