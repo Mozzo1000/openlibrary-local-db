@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    image: openlibrary-local-search-api
+    env_file:
+        - .env
+    environment:
+      - OL_DB=/app/oldata.db
+    volumes:
+        - ${OL_DB}:/app/oldata.db:ro
+    ports:
+        - 5000:5000

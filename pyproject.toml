@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "openlibrary-local-db"
+version = "1.0.0"
+description = ""
+authors = ["Andreas Backström <mozzo242@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "api"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Flask = "^3.0.3"
+Flask-Cors = "^4.0.1"
+python-dotenv = "^1.0.1"
+gunicorn = "^22.0.0"
+
+[tool.poetry.group.dev.dependencies]
+sqlite-utils = "^3.36"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
